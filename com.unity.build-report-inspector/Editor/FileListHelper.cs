@@ -29,46 +29,16 @@ namespace Unity.BuildReportInspector
             return internalNameToArchiveMapping.TryGetValue(internalName, out var archiveName) ? archiveName : null;
         }
 
-        /// <summary>
-        // Map between the internal file names inside Archive files back to the Archive filename.
-        // Currently this only applies to AssetBundle builds, which can have many output files and which use hard to understand internal file names.
-        // For compressed Player builds the PackedAssets reports the internal files, but the file list does not report the unity3d content,
-        // so this code will not pick up the mapping.  However because there is only a single unity3d file on most platforms this is less important
-
-        /*
-        Example input:
-
-        - path: C:/Src/TestProject/Build/AssetBundles/audio.bundle/CAB-76a378bdc9304bd3c3a82de8dd97981a.resource
-          role: StreamingResourceFile
-        ...
-        - path: C:/Src/TestProject/Build/AssetBundles/audio.bundle
-          role: AssetBundle
-        ...
-
-        Result:
-        CAB-76a378bdc9304bd3c3a82de8dd97981a.resource -> audio.bundle
-        */
-        /// </summary>
         private void CalculateAssetBundleMapping(BuildReport report)
         {
             internalNameToArchiveMapping.Clear();
 
-#if UNITY_6000_0_OR_NEWER
-            if (report.summary.buildType == BuildType.Player)
-                return;
-#endif
-
-#if UNITY_2022_1_OR_NEWER
-            var files = report.GetFiles();
-#else
             var files = report.files;
-#endif // UNITY_2022_1_OR_NEWER
 
-            // Track archive paths and their base filenames for AssetBundle or manifest files
             var archivePathToFileName = new Dictionary<string, string>();
             foreach (var file in files)
             {
-                if (file.role == CommonRoles.assetBundle)
+                if (file.role == "AssetBundle")
                 {
                     var justFileName = Path.GetFileName(file.path);
                     archivePathToFileName[file.path] = justFileName;
@@ -78,10 +48,8 @@ namespace Unity.BuildReportInspector
             if (archivePathToFileName.Count == 0)
                 return;
 
-            // Map internal file names to their corresponding archive filenames
             foreach (var file in files)
             {
-                // Assumes internal files are not in subdirectories inside the archive
                 var justPath = Path.GetDirectoryName(file.path)?.Replace('\\', '/');
                 var justFileName = Path.GetFileName(file.path);
 

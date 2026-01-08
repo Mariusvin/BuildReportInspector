@@ -1,0 +1,52 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement>
+        <ui:Toolbar>
+            <ui:ToolbarSearchField name="search-field" />
+        </ui:Toolbar>
+        <ui:VisualElement name="tabs">
+            <ui:Button name="overview-tab" text="Overview" class="tab" />
+            <ui:Button name="file-list-tab" text="File List" class="tab" />
+            <ui:Button name="build-steps-tab" text="Build Steps" class="tab" />
+            <ui:Button name="source-assets-tab" text="Source Assets" class="tab" />
+            <ui:Button name="addressables-tab" text="Addressables" class="tab" />
+            <ui:Button name="android-pad-tab" text="Android/PAD" class="tab" />
+            <ui:Button name="stripping-tab" text="Stripping" class="tab" />
+            <ui:Button name="scenes-using-assets-tab" text="Scenes Using Assets" class="tab" />
+            <ui:Button name="duplicate-assets-tab" text="Duplicate Assets" class="tab" />
+        </ui:VisualElement>
+        <ui:VisualElement name="tab-content">
+            <ui:VisualElement name="overview-content" class="tab-content-panel">
+                <ui:Label text="Build Size Distribution" style="font-size: 16px; font-weight: bold; margin-bottom: 10px;" />
+                <ui:VisualElement name="chart-container" style="flex-grow: 1; background-color: #222; padding: 10px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="file-list-content" class="tab-content-panel" style="display: none;">
+                <ui:VisualElement name="file-list-header" style="flex-direction: row; justify-content: space-between; padding: 5px; border-bottom-width: 1px; border-bottom-color: black;">
+                    <ui:Button name="file-name-header" text="File Name" style="flex-grow: 1; unity-text-align: middle-left;" />
+                    <ui:Button name="file-size-header" text="Size" style="width: 100px; unity-text-align: middle-right;" />
+                </ui:VisualElement>
+                <ui:ListView name="file-list" />
+            </ui:VisualElement>
+            <ui:VisualElement name="build-steps-content" class="tab-content-panel" style="display: none;">
+                <ui:Label text="Build Steps Content" />
+            </ui:VisualElement>
+            <ui:VisualElement name="source-assets-content" class="tab-content-panel" style="display: none;">
+                <ui:Label text="Source Assets Content" />
+            </ui:VisualElement>
+            <ui:VisualElement name="addressables-content" class="tab-content-panel" style="display: none;">
+                <ui:Label text="Addressables Content" />
+            </ui:VisualElement>
+            <ui:VisualElement name="android-pad-content" class="tab-content-panel" style="display: none;">
+                <ui:Label text="Android/PAD Content" />
+            </ui:VisualElement>
+            <ui:VisualElement name="stripping-content" class="tab-content-panel" style="display: none;">
+                <ui:Label text="Stripping Content" />
+            </ui:VisualElement>
+            <ui:VisualElement name="scenes-using-assets-content" class="tab-content-panel" style="display: none;">
+                <ui:Label text="Scenes Using Assets Content" />
+            </ui:VisualElement>
+            <ui:VisualElement name="duplicate-assets-content" class="tab-content-panel" style="display: none;">
+                <ui:Label text="Duplicate Assets Content" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

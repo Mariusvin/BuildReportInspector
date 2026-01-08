@@ -1,15 +1,7 @@
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using UnityEditor.Build.Reporting;
 
-// Utility that analyzes the PackedAsset information in the BuildReport to discover duplicated Assets.
-// This is only relevant for AssetBundles and is a common problem unless the assignment of Assets to Bundles has been fine tuned
-// to avoid excessive repeated content.
-// Player builds should always deduplicate any referenced content (as it lays out the .sharedAsset files).
-//
-// Note: The git repo for this package has a TestProject, which includes an simple scenario that intentionally creates duplicated content,
-// to demonstrating this feature.
 namespace Unity.BuildReportInspector
 {
     public class AssetInBundleStats
